@@ -103,16 +103,22 @@
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
           var imageData = context.getImageData(0, 0, img.width, img.height);
-		
+	 // this variable will store the image dimensions starting from 0 , 0 to the image height and width	
             
 
           var imgData = imageData.data;
+	 // this variable will store the data from the previous variable to be later displayed and manipulated to the color blue 
 
           for(var i = 0; i < imgData.length; i+=4) {
-             imgData[i] = 0;
-	     imgData[i+1] = 0;
+             imgData[i] = 0; //Red intensity channel data
+	     imgData[i+1] = 0; //Green intensity channel data
 	    }
- 
+
+	  // this iterates by 4 so it can access every pixel's red intensity channel. It also adds 1 in the second command to access the green intensity channel for every pixel. 
+
+
+
+          // displays altered image into canvas 2 
           context2.putImageData(imageData, 0, 0);
           
         } // end of img.onload
@@ -143,7 +149,7 @@
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
       <div id="messageDisplayArea"></div>
-      
+      <!-- First canvas script which pastes the uploaded image -->
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
         var canvas = document.getElementById('myCanvas');
@@ -152,8 +158,9 @@
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
       </script>
-
-    <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+ 	
+	<!-- Second canvas script which pastes the blue rendered image -->
+    <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> 
          <script>
     var canvas2 = document.getElementById('myCanvas2');
     var context2 = canvas2.getContext("2d");
@@ -161,6 +168,7 @@
     context2.fillStyle = "black";
     context2.fillText("Blue rendered image will go here!", 10, 20);
       </script>
+	<!-- Script was copied from canvas 1 including but variables were changed so border, font, and dimensions were accessing the second canvas as context2 -->
 
 
 
